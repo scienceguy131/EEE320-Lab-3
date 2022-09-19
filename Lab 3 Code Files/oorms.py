@@ -20,13 +20,13 @@
 
 
     Status:
-        - Velasco (Sept 19, 2022): Reading code for the first time to see what we've got to work with.
+        - Velasco (Sept 19, 2022) COMPLETED: Reading code for the first time to see what we've got to work with.
         Adding inline comments to organize things. These can be deleted later.
 
 
 """
 
-# --- Importing Libaries ---
+# --- Importing Libraries ---
 
 import math
 import tkinter as tk
@@ -92,6 +92,7 @@ class ServerView(tk.Frame):
         # Umm I'm guessing this creates a handler for when the screen is clicked?
         for ix, (table_id, seat_ids) in enumerate(view_ids):
 
+            # Pre-written message here:
             # §54.7 "extra arguments trick" in Tkinter 8.5 reference by Shipman
             # Used to capture current value of ix as table_index for use when
             # handler is called (i.e., when screen is clicked).

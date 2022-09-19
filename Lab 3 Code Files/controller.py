@@ -1,3 +1,10 @@
+""" Code module that contains the controller classes, including:
+
+Controller Parent Class
+RestaurantController (inherits Controller)
+TableController (inherits Controller)
+OrderController (inherits Controller) """
+
 class Controller:
     """
     Do not modify this class, just its subclasses. Represents common behaviour of all
@@ -30,6 +37,8 @@ class Controller:
     def table_touched(self, table_index):
         raise RuntimeError('table_touched: some subclasses must implement')
 
+
+# ------------------- Classes below are what we modify ----------------------
 
 class RestaurantController(Controller):
     """ A class that inherits Controller class.

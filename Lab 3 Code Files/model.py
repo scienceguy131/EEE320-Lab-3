@@ -1,3 +1,7 @@
+""" Module that contains all the models for the restaurant objects.
+
+This will be modified come time. """
+
 from constants import TABLES, MENU_ITEMS
 
 
