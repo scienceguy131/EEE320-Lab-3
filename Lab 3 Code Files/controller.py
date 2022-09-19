@@ -1,3 +1,10 @@
+""" Code module that contains the controller classes, including:
+
+Controller Parent Class
+RestaurantController (inherits Controller)
+TableController (inherits Controller)
+OrderController (inherits Controller) """
+
 class Controller:
     """
     Do not modify this class, just its subclasses. Represents common behaviour of all
@@ -31,9 +38,16 @@ class Controller:
         raise RuntimeError('table_touched: some subclasses must implement')
 
 
+# ------------------- Classes below are what we modify ----------------------
+
 class RestaurantController(Controller):
+    """ A class that inherits Controller class.
+     I'm guessing it controls the restaurant? """
 
     def create_ui(self):
+        """ Creates the restaurant user interface with the passed through. """
+
+        # This was defined in oorms.py
         self.view.create_restaurant_ui()
 
 

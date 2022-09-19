@@ -1,3 +1,5 @@
+""" Yeah I think this code module is pretty self explanatory. """
+
 # Restaurant data
 
 TABLES = [(6, (20, 20)),
@@ -13,7 +15,7 @@ MENU_ITEMS = [('House burger', 16),
               ('Chicken club', 14.5),
               ('Crispy Pork Belly', 14.5),
               ('Fried Chicken', 14.5),
-              ('Butter Chicken Tacos', 16),
+              ('Butter Chicken Tacos', 16), # What on earth... this is a new one for me
               ('Roasted Squash', 14),
               ('Portabella Burger', 14),
               ('Striploin Sandwich', 16),

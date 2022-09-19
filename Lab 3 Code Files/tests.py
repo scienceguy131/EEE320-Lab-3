@@ -1,3 +1,8 @@
+""" This is the code module that contains all the testing code for the OORMS.
+
+When things start to get slowly implemented, then we'll start uncommenting lines. """
+
+
 from controller import RestaurantController, TableController, OrderController
 from constants import MENU_ITEMS
 from model import Restaurant, Table, Order, OrderItem

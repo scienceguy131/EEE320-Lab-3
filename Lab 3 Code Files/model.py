@@ -1,9 +1,16 @@
+""" Module that contains all the models for the restaurant objects.
+
+This will be modified come time. """
+
 from constants import TABLES, MENU_ITEMS
 
 
 class Restaurant:
 
     def __init__(self):
+        """ Creates the restaurant object. """
+
+        # Getting the table and chair data from TABLES in  constants.py, creating list from it
         self.tables = [Table(seats, loc) for seats, loc in TABLES]
 
 
@@ -14,6 +21,9 @@ class Restaurant:
 class Table:
 
     def __init__(self, seats, location):
+        """ Creates a table object. """
+
+        # Setting the instance vars of a given table object
         self.n_seats = seats
         self.location = location
         # TODO: Uncomment next line
