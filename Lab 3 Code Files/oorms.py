@@ -1,3 +1,29 @@
+""" This is essentially the main module of the Lab 3 OORMS program.
+
+    Hoooo this is going to be a fun one for sure.
+
+    Task: To implement all the sequence diagrams outlined in the lab instructions
+    into the code. Testing code has been provided for us.
+
+
+    Lab Started: September 19, 2022
+    Lab Members: OCdt Al-Ansar Mohammed, OCdt Liethan Velasco.
+
+
+
+    Notes:
+          - None for now :P
+
+
+    Status:
+        - Velasco: Reading code for the first time to see what we've got to work with.
+        Adding inline comments to organize things.
+
+
+"""
+
+# --- Importing Libaries ---
+
 import math
 import tkinter as tk
 
@@ -6,9 +32,17 @@ from controller import RestaurantController
 from model import Restaurant
 
 
+# ------------- Defining Classes ---------------
+
 class ServerView(tk.Frame):
 
     def __init__(self, master, restaurant):
+        """ Constructor to ServerView class. Sets up all the instance variables that
+         creates the restaurant view through tkinter. """
+
+        # Note to self: <root> gets passed through master arg.
+        # restaurant_info, an object of Restaurant() gets passed through restaurant.
+
         super().__init__(master)
         self.grid()
         self.canvas = tk.Canvas(self, width=SERVER_VIEW_WIDTH, height=SERVER_VIEW_HEIGHT,
@@ -109,12 +143,19 @@ class ServerView(tk.Frame):
         self.canvas.tag_bind(label, '<Button-1>', action)
 
 
+
+# --------- Defining Functions -----------
+
 def scale_and_offset(x0, y0, width, height, offset_x0, offset_y0, scale):
     return ((offset_x0 + x0) * scale,
             (offset_y0 + y0) * scale,
             (offset_x0 + x0 + width) * scale,
             (offset_y0 + y0 + height) * scale)
 
+
+
+
+# --------- Running the main ---------
 
 if __name__ == "__main__":
     restaurant_info = Restaurant()
