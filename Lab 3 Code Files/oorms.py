@@ -23,6 +23,9 @@
         - Velasco (Sept 19, 2022) COMPLETED: Reading code for the first time to see what we've got to work with.
         Adding inline comments to organize things. These can be deleted later.
 
+    TODO:
+        - Begin implementing the first sequence diagram
+
 
 """
 
