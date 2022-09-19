@@ -32,8 +32,13 @@ class Controller:
 
 
 class RestaurantController(Controller):
+    """ A class that inherits Controller class.
+     I'm guessing it controls the restaurant? """
 
     def create_ui(self):
+        """ Creates the restaurant user interface with the passed through. """
+
+        # This was defined in oorms.py
         self.view.create_restaurant_ui()
 
 
