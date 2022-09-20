@@ -23,6 +23,8 @@ class Controller:
         raise RuntimeError('cancel: some subclasses must implement')
 
     def create_ui(self):
+
+
         raise RuntimeError('create_ui: all subclasses must implement')
 
     def done(self):
@@ -35,7 +37,25 @@ class Controller:
         raise RuntimeError('seat_touched: some subclasses must implement')
 
     def table_touched(self, table_index):
-        raise RuntimeError('table_touched: some subclasses must implement')
+        """ 1. Serverview calls table_toched(table_number) in controller
+	    2. Controller gets table datalizes a table controller object
+	    4. Controller sets t from tables : List[Table]
+	    3. Controller initiahe controller using set_controller(Tablecontroller object)
+		back in Serverview
+	    5. ServerView creates the UI in the TableController object
+	    6. TableController object creates the UI back in ServerView"""
+
+        # Retrieving specific table object that was touched from self.restaurant attribute
+        this_table = self.restaurant.tables[table_index];
+
+        # Creating a Table Controller Object from table that was touched (damn u can do that lmao)
+        tc = TableController(self.view, self.restaurant, this_table);
+
+        # Switching controller to this current table controller back in ServerView
+        self.view.set_controller(tc);
+
+
+        # raise RuntimeError('table_touched: some subclasses must implement')
 
 
 # ------------------- Classes below are what we modify ----------------------
@@ -52,7 +72,19 @@ class RestaurantController(Controller):
 
 
 class TableController(Controller):
-    pass
+
+    def __init__(self, view, restaurant, table):
+        """ TableController constructor..."""
+
+        super().__init__(view, restaurant);
+
+        self.view = view;
+        self.restaurant = restaurant;
+        self.table = table;
+
+    def create_ui(self):
+        self.view.create_table_ui(self.table);
+
 
 
 class OrderController(Controller):

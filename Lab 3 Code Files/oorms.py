@@ -67,6 +67,7 @@ class ServerView(tk.Frame):
     def set_controller(self, controller):
         """ Method that sets ServerView's controller attribute as controller arg,
         and creates the user interface of said controller. """
+
         self.controller = controller
         self.controller.create_ui()
 
@@ -102,7 +103,7 @@ class ServerView(tk.Frame):
 
             # Damn, strange place to put a function definition.
             # It just calls the controller's table_touched() method
-            def table_touch_handler(_, table_number=ix):
+            def table_touch_handler(_, table_number = ix):
                 self.controller.table_touched(table_number)
 
             # Creating the buttons for the tables and chairs here using canvas.tag_bind()?
