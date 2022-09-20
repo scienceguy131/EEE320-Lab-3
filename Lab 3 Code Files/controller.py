@@ -141,4 +141,11 @@ class OrderController(Controller):
     def update_order(self):
         """ Updates order I guess idk. """
 
-        self.order.place_new_order();
+        # Placing the new orders
+        self.order.place_new_orders();
+
+        # Creating the table controller and setting it to be controller in ServerView
+        tc = TableController(self.view, self.restaurant, self.table);
+        self.view.set_controller(tc);
+
+
