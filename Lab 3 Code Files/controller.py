@@ -101,7 +101,7 @@ class TableController(Controller):
         """ This gets called whenever a seat is touched idk. """
 
         # Create OrderController object
-        oc = OrderController(self.view, self.restaurant, self.table, seat_number);
+        oc =OrderController(self.view, self.restaurant, self.table, seat_number);
 
         # Setting controller to oc back in ServerView
         self.view.set_controller(oc);
@@ -136,3 +136,7 @@ class OrderController(Controller):
     def create_ui(self):
         """ Creates the user interface of the given OrderController object. """
         self.view.create_order_ui(self.order);
+
+    def add_item(self, item):
+        pass
+

@@ -38,7 +38,11 @@ class Table:
 
 
 class Order:
+    def add_item(self,menu_item):
+        pass
     pass
+
+
 
 
 class OrderItem:
