@@ -67,6 +67,7 @@ class ServerView(tk.Frame):
     def set_controller(self, controller):
         """ Method that sets ServerView's controller attribute as controller arg,
         and creates the user interface of said controller. """
+
         self.controller = controller
         self.controller.create_ui()
 
