@@ -101,7 +101,7 @@ class TableController(Controller):
         """ This gets called whenever a seat is touched idk. """
 
         # Create OrderController object
-        oc =OrderController(self.view, self.restaurant, self.table, seat_number);
+        oc = OrderController(self.view, self.restaurant, self.table, seat_number);
 
         # Setting controller to oc back in ServerView
         self.view.set_controller(oc);
@@ -113,7 +113,7 @@ class TableController(Controller):
         """
         
         # Makes a RestaurantController obj
-        rc = RestaurantController(view=self.view,restaurant=self.restaurant)
+        rc = RestaurantController(view=self.view, restaurant=self.restaurant)
 
         # sets the controller we just made
         self.view.set_controller(rc)
@@ -140,3 +140,9 @@ class OrderController(Controller):
     def add_item(self, item):
         pass
 
+
+
+    def update_order(self):
+        """ Updates order I guess idk. """
+
+        self.order.place_new_order();
