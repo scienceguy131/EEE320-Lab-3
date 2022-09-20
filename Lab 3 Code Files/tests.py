@@ -57,11 +57,11 @@ class OORMSTestCase(unittest.TestCase):
         self.assertEqual(self.view.controller.table, self.restaurant.tables[3])
         self.assertEqual((TABLE_UI, self.restaurant.tables[3]), self.view.last_UI_created)
 
-    # def test_table_controller_done(self):
-    #     self.view.controller.table_touched(5)
-    #     self.view.controller.done()
-    #     self.assertIsInstance(self.view.controller, RestaurantController)
-    #     self.assertEqual(RESTAURANT_UI, self.view.last_UI_created)
+    def test_table_controller_done(self):
+        self.view.controller.table_touched(5)
+        self.view.controller.done()
+        self.assertIsInstance(self.view.controller, RestaurantController)
+        self.assertEqual(RESTAURANT_UI, self.view.last_UI_created)
 
     def test_table_controller_seat_touched(self):
         self.view.controller.table_touched(4)

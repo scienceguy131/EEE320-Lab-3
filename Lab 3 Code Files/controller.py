@@ -20,6 +20,10 @@ class Controller:
         self.restaurant = restaurant
 
     def add_item(self, item):
+        """ 1. gets called from ServerView create_ui()
+        2. add item from order class
+        """
+        #self.()
         raise RuntimeError('add_item: some subclasses must implement')
 
     def cancel(self):
@@ -70,6 +74,7 @@ class RestaurantController(Controller):
     """ A class that inherits Controller class.
      I'm guessing it controls the restaurant? """
 
+
     def create_ui(self):
         """ Creates the restaurant user interface with the passed through. """
 
@@ -91,6 +96,7 @@ class TableController(Controller):
     def create_ui(self):
         self.view.create_table_ui(self.table);
 
+
     def seat_touched(self, seat_number):
         """ This gets called whenever a seat is touched idk. """
 
@@ -100,7 +106,18 @@ class TableController(Controller):
         # Setting controller to oc back in ServerView
         self.view.set_controller(oc);
 
+    def done(self):
+        """ 1. gets called in the ServerView
+        2. makes a RestaurantController obj
+        3. sets the controller based on the restaurant controller
+        """
+        
+        # Makes a RestaurantController obj
+        rc = RestaurantController(view=self.view,restaurant=self.restaurant)
 
+        # sets the controller we just made
+        self.view.set_controller(rc)
+        
 
 class OrderController(Controller):
 
