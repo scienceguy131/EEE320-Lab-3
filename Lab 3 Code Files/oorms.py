@@ -156,9 +156,8 @@ class ServerView(tk.Frame):
                        (table.n_seats % 2) * (ix % 2) * (SEAT_DIAM + SEAT_SPACING) / 2)
             seat_bbox = scale_and_offset(seat_x0, seat_y0, SEAT_DIAM, SEAT_DIAM,
                                          offset_x0, offset_y0, scale)
-            # TODO: delete next line, uncomment the line following
-            style = EMPTY_SEAT_STYLE
-            # style = FULL_SEAT_STYLE if table.has_order_for(ix) else EMPTY_SEAT_STYLE
+
+            style = FULL_SEAT_STYLE if table.has_order_for(ix) else EMPTY_SEAT_STYLE
             seat_id = self.canvas.create_oval(*seat_bbox, **style)
             seat_ids.append(seat_id)
         return table_id, seat_ids
