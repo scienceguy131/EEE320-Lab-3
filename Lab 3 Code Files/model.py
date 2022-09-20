@@ -26,8 +26,15 @@ class Table:
         # Setting the instance vars of a given table object
         self.n_seats = seats
         self.location = location
-        # TODO: Uncomment next line
-        # self.orders = [Order() for _ in range(seats)]
+
+
+        # Creating the list of orders for each seat
+        self.orders = [Order() for _ in range(seats)]
+
+
+    def order_for(self, seat_number):
+        """ Returns the specific order associated with a given seat. """
+        return self.orders[seat_number];
 
 
 class Order:

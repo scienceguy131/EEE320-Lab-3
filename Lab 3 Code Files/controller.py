@@ -5,6 +5,9 @@ RestaurantController (inherits Controller)
 TableController (inherits Controller)
 OrderController (inherits Controller) """
 
+# --- Importing Libraries ---
+from model import Table;
+
 class Controller:
     """
     Do not modify this class, just its subclasses. Represents common behaviour of all
@@ -38,7 +41,10 @@ class Controller:
         raise RuntimeError('place_order: some subclasses must implement')
 
     def seat_touched(self, seat_number):
-        raise RuntimeError('seat_touched: some subclasses must implement')
+        """ Has similar code structure and functionality as the table_touched implementation. """
+        pass;
+
+        # raise RuntimeError('seat_touched: some subclasses must implement')
 
     def table_touched(self, table_index):
         """ 1. Serverview calls table_toched(table_number) in controller
@@ -90,18 +96,43 @@ class TableController(Controller):
     def create_ui(self):
         self.view.create_table_ui(self.table);
 
+
+    def seat_touched(self, seat_number):
+        """ This gets called whenever a seat is touched idk. """
+
+        # Create OrderController object
+        oc = OrderController(self.view, self.restaurant, self.table, seat_number);
+
+        # Setting controller to oc back in ServerView
+        self.view.set_controller(oc);
+
     def done(self):
         """ 1. gets called in the ServerView
         2. makes a RestaurantController obj
         3. sets the controller based on the restaurant controller
-
-
         """
+        
         # Makes a RestaurantController obj
         rc = RestaurantController(view=self.view,restaurant=self.restaurant)
 
         # sets the controller we just made
         self.view.set_controller(rc)
+        
 
 class OrderController(Controller):
-    pass
+
+    def __init__(self, view, restaurant, table, seat_number):
+        """ OrderController constructor..."""
+
+        super().__init__(view, restaurant);
+
+        self.view = view;
+        self.restaurant = restaurant;
+        self.table = table;
+
+        # Getting the specific order associated with given seat_number
+        self.order = self.table.order_for(seat_number);
+
+    def create_ui(self):
+        """ Creates the user interface of the given OrderController object. """
+        self.view.create_order_ui(self.order);
