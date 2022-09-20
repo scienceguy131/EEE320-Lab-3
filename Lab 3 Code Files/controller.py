@@ -113,7 +113,7 @@ class TableController(Controller):
         """
         
         # Makes a RestaurantController obj
-        rc = RestaurantController(view=self.view,restaurant=self.restaurant)
+        rc = RestaurantController(view=self.view, restaurant=self.restaurant)
 
         # sets the controller we just made
         self.view.set_controller(rc)
@@ -136,3 +136,9 @@ class OrderController(Controller):
     def create_ui(self):
         """ Creates the user interface of the given OrderController object. """
         self.view.create_order_ui(self.order);
+
+
+    def update_order(self):
+        """ Updates order I guess idk. """
+
+        self.order.place_new_order();

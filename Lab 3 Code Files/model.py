@@ -38,11 +38,23 @@ class Table:
 
 
 class Order:
-    pass
+
+    # Has no constructor lmao
+
+    def place_new_orders(self):
+        pass;
 
 
 class OrderItem:
-    pass
+
+    def __init__(self, menu_item):
+
+        # Defaulting order status of this OrderItem object to false
+        self.ordered = False;
+
+
+    def mark_as_ordered(self):
+        pass;
 
 
 class MenuItem:
