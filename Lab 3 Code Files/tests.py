@@ -72,36 +72,36 @@ class OORMSTestCase(unittest.TestCase):
         self.assertEqual(self.view.controller.order, the_order)
         self.assertEqual((ORDER_UI, the_order), self.view.last_UI_created)
 
-    # def order_an_item(self):
-    #     """
-    #     Starting from the restaurant UI, orders one instance of item 0
-    #     for table 2, seat 4
-    #     """
-    #     self.view.controller.table_touched(2)
-    #     self.view.controller.seat_touched(4)
-    #     the_menu_item = self.restaurant.menu_items[0]
-    #     self.view.last_UI_created = None
-    #     self.view.controller.add_item(the_menu_item)
-    #     return self.restaurant.tables[2].order_for(4), the_menu_item
+    def order_an_item(self):
+        """
+        Starting from the restaurant UI, orders one instance of item 0
+        for table 2, seat 4
+        """
+        self.view.controller.table_touched(2)
+        self.view.controller.seat_touched(4)
+        the_menu_item = self.restaurant.menu_items[0]
+        self.view.last_UI_created = None
+        self.view.controller.add_item(the_menu_item)
+        return self.restaurant.tables[2].order_for(4), the_menu_item
 
-    # def test_order_controller_add_item(self):
-    #     the_order, the_menu_item = self.order_an_item()
-    #     self.assertIsInstance(self.view.controller, OrderController)
-    #     self.assertEqual((ORDER_UI, the_order), self.view.last_UI_created)
-    #     self.assertEqual(1, len(the_order.items))
-    #     self.assertIsInstance(the_order.items[0], OrderItem)
-    #     self.assertEqual(the_order.items[0].details, the_menu_item)
-    #     self.assertFalse(the_order.items[0].ordered)
+    def test_order_controller_add_item(self):
+        the_order, the_menu_item = self.order_an_item()
+        self.assertIsInstance(self.view.controller, OrderController)
+        self.assertEqual((ORDER_UI, the_order), self.view.last_UI_created)
+        self.assertEqual(1, len(the_order.items))
+        self.assertIsInstance(the_order.items[0], OrderItem)
+        self.assertEqual(the_order.items[0].details, the_menu_item)
+        self.assertFalse(the_order.items[0].ordered)
 
-    # def test_order_controller_update_order(self):
-    #     the_order, the_menu_item = self.order_an_item()
-    #     self.view.last_UI_created = None
-    #     self.view.controller.update_order()
-    #     self.assertEqual((TABLE_UI, self.restaurant.tables[2]), self.view.last_UI_created)
-    #     self.assertEqual(1, len(the_order.items))
-    #     self.assertIsInstance(the_order.items[0], OrderItem)
-    #     self.assertEqual(the_order.items[0].details, the_menu_item)
-    #     self.assertTrue(the_order.items[0].ordered)
+    def test_order_controller_update_order(self):
+        the_order, the_menu_item = self.order_an_item()
+        self.view.last_UI_created = None
+        self.view.controller.update_order()
+        self.assertEqual((TABLE_UI, self.restaurant.tables[2]), self.view.last_UI_created)
+        self.assertEqual(1, len(the_order.items))
+        self.assertIsInstance(the_order.items[0], OrderItem)
+        self.assertEqual(the_order.items[0].details, the_menu_item)
+        self.assertTrue(the_order.items[0].ordered)
 
     # def test_order_controller_cancel(self):
     #     the_order, the_menu_item = self.order_an_item()

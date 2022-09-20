@@ -20,10 +20,6 @@ class Controller:
         self.restaurant = restaurant
 
     def add_item(self, item):
-        """ 1. gets called from ServerView create_ui()
-        2. add item from order class
-        """
-        #self.()
         raise RuntimeError('add_item: some subclasses must implement')
 
     def cancel(self):
@@ -113,7 +109,7 @@ class TableController(Controller):
         """
         
         # Makes a RestaurantController obj
-        rc = RestaurantController(view=self.view,restaurant=self.restaurant)
+        rc = RestaurantController(view=self.view, restaurant=self.restaurant)
 
         # sets the controller we just made
         self.view.set_controller(rc)
@@ -136,3 +132,20 @@ class OrderController(Controller):
     def create_ui(self):
         """ Creates the user interface of the given OrderController object. """
         self.view.create_order_ui(self.order);
+
+    def add_item(self, item):
+        self.order.add_item(item)
+        self.create_ui()
+
+
+    def update_order(self):
+        """ Updates order I guess idk. """
+
+        # Placing the new orders
+        self.order.place_new_orders();
+
+        # Creating the table controller and setting it to be controller in ServerView
+        tc = TableController(self.view, self.restaurant, self.table);
+        self.view.set_controller(tc);
+
+
