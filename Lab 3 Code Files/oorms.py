@@ -1,6 +1,5 @@
 """ This is essentially the main module of the Lab 3 OORMS program.
 
-    Hoooo this is going to be a fun one for sure.
 
     Task: To implement all the sequence diagrams outlined in the lab instructions
     into the code. Testing code has been provided for us.
@@ -23,6 +22,8 @@
         - Velasco (Sept 19, 2022) COMPLETED: Reading code for the first time to see what we've got to work with.
         Adding inline comments to organize things. These can be deleted later.
         - Velasco and Mohammed (Sept 20, 2022) COMPLETED: Implementing the Table Touch sequence diagram.
+        - Mohammed (Sept 20, 2022) finished last sequence diagram (cancelling) and tested UI and ran tests.py
+        sucessfully
 
 
 

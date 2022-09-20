@@ -36,7 +36,7 @@ class Table:
         return self.orders[seat_number];
 
     def has_order_for(self, seat_number):
-
+        """Returns a boolean that indicates whether a given seat has ordered yet"""
         if (len(self.orders[seat_number].unordered_items()) == 0) and (self.orders[seat_number].total_cost() > 0):
             return True;
         else:
@@ -67,14 +67,16 @@ class Order:
         return [this_order for this_order in self.items if this_order.ordered is False];
 
     def remove_unordered_items(self):
-        pass;
+        unordered = self.unordered_items()
+        for item in unordered:
+            self.items.remove(item)
 
     def total_cost(self):
         total = 0
         for selection in self.items:
             total += selection.details.price
 
-        return total;
+        return total
 
 
 class OrderItem:

@@ -148,4 +148,13 @@ class OrderController(Controller):
         tc = TableController(self.view, self.restaurant, self.table);
         self.view.set_controller(tc);
 
+    def cancel(self):
+        self.order.remove_unordered_items()
+
+        tc = TableController(self.view,self.restaurant,self.table)
+
+        self.view.set_controller(tc)
+
+
+
 
