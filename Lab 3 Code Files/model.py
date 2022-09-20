@@ -67,7 +67,11 @@ class Order:
         pass;
 
     def total_cost(self):
-        pass;
+        total = 0
+        for selection in self.items:
+            total += selection.details.price
+
+        return total;
 
 
 class OrderItem:
