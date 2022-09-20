@@ -38,25 +38,18 @@ class Table:
 
 
 class Order:
-    def add_item(self,menu_item):
-        item = OrderItem(menu_item)
-        self.items.append(item)
-
-
-
-
-
 
     def __init__(self):
 
         # Creating empty list attribute to contain all items to be ordered (aka unordered)
         self.items = [];
 
+    def add_item(self, menu_item):
+        item = OrderItem(menu_item)
+        self.items.append(item)
+
     def place_new_orders(self):
         pass;
-
-    def add_item(self, menu_item):
-        item = OrderItem(menu_item);
 
     def unordered_items(self):
         return [this_order for this_order in self.items if this_order.ordered == False];
