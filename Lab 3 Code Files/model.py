@@ -39,8 +39,12 @@ class Table:
 
 class Order:
     def add_item(self,menu_item):
-        pass
-    pass
+        item = OrderItem(menu_item)
+        self.items.append(item)
+
+
+
+
 
     # Has no constructor lmao
 
