@@ -35,6 +35,23 @@ class Controller:
         raise RuntimeError('seat_touched: some subclasses must implement')
 
     def table_touched(self, table_index):
+
+        # TODO - Alright so we put the stuff into here.
+
+        """ 1. Serverview calls table_toched(table_number) in controller
+	    2. Controller gets table datalizes a table controller object
+	    4. Controller sets t from tables : List[Table]
+	    3. Controller initiahe controller using set_controller(Tablecontroller object)
+		back in Serverview
+	    5. ServerView creates the UI in the TableController object
+	    6. TableController object creates the UI back in ServerView"""
+
+        # Getting table data from self.restaurant attribute
+        tables = self.restaurant.tables;
+
+        # Creating a Table Controller Object
+
+
         raise RuntimeError('table_touched: some subclasses must implement')
 
 
