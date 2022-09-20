@@ -44,15 +44,24 @@ class Order:
         # Creating empty list attribute to contain all items to be ordered (aka unordered)
         self.items = [];
 
-    def add_item(self, menu_item):
-        item = OrderItem(menu_item)
-        self.items.append(item)
-
     def place_new_orders(self):
         pass;
 
+    def add_item(self, menu_item):
+        item = OrderItem(menu_item);
+        self.items.append(item);
+
+    def place_new_orders(self):
+
+        # Get list of unordered items first
+        unordered_items = self.unordered_items();
+
+        # Loop through list and set all orders to ordered
+        for this_order in unordered_items:
+            this_order.mark_as_ordered();
+
     def unordered_items(self):
-        return [this_order for this_order in self.items if this_order.ordered == False];
+        return [this_order for this_order in self.items if this_order.ordered is False];
 
     def remove_unordered_items(self):
         pass;
