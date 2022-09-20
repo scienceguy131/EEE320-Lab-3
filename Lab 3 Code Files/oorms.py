@@ -22,10 +22,14 @@
         - Velasco (Sept 19, 2022) COMPLETED: Reading code for the first time to see what we've got to work with.
         Adding inline comments to organize things. These can be deleted later.
         - Velasco and Mohammed (Sept 20, 2022) COMPLETED: Implementing the Table Touch sequence diagram.
-        - Mohammed (Sept 20, 2022) finished last sequence diagram (cancelling) and tested UI and ran tests.py
-        sucessfully
-
-
+        - Mohammed (Sept 20, 2022) COMPLETED: Implementing the Done button sequence diagram.
+        - Velasco (Sept 20, 2022) COMPLETED: Implementing the table touch sequence diagram.
+        - Mohammed (Sept 20, 2022) COMPLETED: Implementing the menu item to be ordered sequence diagram.
+        - Velasco (Sept 20, 2022) COMPLETED: Implementing Place Order button sequence diagram.
+        - Mohammed (Sept 20, 2022) COMPLETED: finished last sequence diagram (cancelling) and tested UI and ran tests.py
+        successfully
+        - Velasco (Sept 20, 2022): Cleaning up the code for hand in...
+        - Mohammed (Sept 20, 2022): Beginning lab report write-up...
 
 """
 
