@@ -22,9 +22,8 @@
     Status:
         - Velasco (Sept 19, 2022) COMPLETED: Reading code for the first time to see what we've got to work with.
         Adding inline comments to organize things. These can be deleted later.
+        - Velasco and Mohammed (Sept 20, 2022) COMPLETED: Implementing the Table Touch sequence diagram.
 
-    TODO:
-        - Begin implementing the first sequence diagram
 
 
 """
@@ -126,7 +125,7 @@ class ServerView(tk.Frame):
 
         # ouu another handler. I'm guessing this is for the chairs.
         for ix, seat_id in enumerate(seat_ids):
-            def handler(_, seat_number=ix):
+            def handler(_, seat_number = ix):
                 self.controller.seat_touched(seat_number)
 
             # Huh, this one gets called above too, but this time with "handler"
