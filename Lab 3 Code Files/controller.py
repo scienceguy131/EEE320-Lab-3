@@ -27,8 +27,6 @@ class Controller:
         raise RuntimeError('cancel: some subclasses must implement')
 
     def create_ui(self):
-
-
         raise RuntimeError('create_ui: all subclasses must implement')
 
     def done(self):
@@ -42,11 +40,11 @@ class Controller:
         raise RuntimeError('place_order: some subclasses must implement');
 
 
-
     def table_touched(self, table_index):
-
         raise RuntimeError('table_touched: some subclasses must implement')
 
+    def update_order(self):
+        raise RuntimeError('update_order: some subclasses must implement');
 
 # ------------------- Classes below are what we modify ----------------------
 
