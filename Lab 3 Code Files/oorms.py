@@ -1,13 +1,16 @@
-""" This is essentially the main module of the Lab 3 OORMS program.
+"""
+    Description:
+        This is the main module to the OORMS Lab 3 assignment from the EEE320 Object Oriented Analysis class.
+        Running this module will cause a window to appear. Said window simulates people seated at given chairs around a
+        table placing orders.
 
-
-    Task: To implement all the sequence diagrams outlined in the lab instructions
-    into the code. Testing code has been provided for us.
+    Task:
+        To implement all the sequence diagrams outlined in the lab instructions into the code.
+        Testing code has been provided for us.
 
 
     Lab Started: September 19, 2022
     Lab Members: OCdt Al-Ansar Mohammed, OCdt Liethan Velasco.
-
 
 
     Notes:
@@ -28,16 +31,18 @@
         - Velasco (Sept 20, 2022) COMPLETED: Implementing Place Order button sequence diagram.
         - Mohammed (Sept 20, 2022) COMPLETED: finished last sequence diagram (cancelling) and tested UI and ran tests.py
         successfully
-        - Velasco (Sept 20, 2022): Cleaning up the code for hand in...
+        - Velasco (Sept 20, 2022): Cleaning up the code for hand in... in the middle of create_restaurant_ui()
         - Mohammed (Sept 20, 2022): Beginning lab report write-up...
 
 """
 
-# --- Importing Libraries ---
+# --- Importing Libraries and Modules ---
 
+# Importing from built-in libraries
 import math
 import tkinter as tk
 
+# Importing from local modules
 from constants import *
 from controller import RestaurantController
 from model import Restaurant
@@ -51,26 +56,31 @@ class ServerView(tk.Frame):
         """ Constructor to ServerView class. Sets up all the instance variables that
          creates the restaurant view through tkinter. """
 
+        # Calling the inherited class's constructor
+        super().__init__(master)
+
         # Creating the window for the server view using tkinter methods and objects.
         # (<root> gets passed through master arg, which is a TK() object from tkinter)
-        super().__init__(master)
         self.grid()
         self.canvas = tk.Canvas(self, width=SERVER_VIEW_WIDTH, height=SERVER_VIEW_HEIGHT,
                                 borderwidth=0, highlightthickness=0)
         self.canvas.grid()
         self.canvas.update()
 
-        # restaurant_info, an object of Restaurant() gets passed through restaurant.
+        # Storing the restaurant object used in the program in an instance var
         self.restaurant = restaurant
 
-        # Setting the controller object attribute
+        # Setting the initial controller to be the RestaurantController object
+        # so that its user interface can be created.
         self.controller = RestaurantController(self, restaurant)
         self.controller.create_ui()
 
 
+    # -------------- Defining Methods --------------
+
     def set_controller(self, controller):
-        """ Method that sets ServerView's controller attribute as controller arg,
-        and creates the user interface of said controller. """
+        """ Method responsible for switching the current controller in ServerView to <controller> passed
+        through args and calls makes it create its own user interface. """
 
         self.controller = controller
         self.controller.create_ui()
@@ -78,26 +88,26 @@ class ServerView(tk.Frame):
 
     # Method that gets called in the RestaurantController object
     def create_restaurant_ui(self):
-        """ It does exactly what its name says - creates the restaurant user interface
-        utilizing tkinter's provided canvas methods.
+        """ This method gets called in the RestaurantController object.
 
-        Ohhh I think I see this creates the tables in the restaurant itself, and
-        I'm guessing their UIs.
+        When called, uses tkinter's provided canvas methods to create the restaurant's user interface.
+        More specifically, it calls the methods that draws out the tables, and defines the function handler
+        in the event a table is touched.
         """
 
-        # Wiping canvas
+        # Wiping canvas of all its current pixels
         self.canvas.delete(tk.ALL)
 
-        # Is to contain the IDs for the created chairs and tables
+        # Creating empty list that will contain the IDs of the tables and chairs created.
         view_ids = []
 
-        # Table and chair data stored in self.restaurant object attribute.
-        # Drawing the tables and chairs onto canvas using self.draw_table() and filling up view_ids
+        # Taking table and chair data stored in self.restaurant object attribute, drawing the taables
+        # and chairs onto the canvas using self.draw_table(). Filling up view_ids while doing so.
         for ix, table in enumerate(self.restaurant.tables):
             table_id, seat_ids = self.draw_table(table, scale=RESTAURANT_SCALE)
             view_ids.append((table_id, seat_ids))
 
-        # Umm I'm guessing this creates a handler for when the screen is clicked?
+        # Creating a handler in the event a table is clicked on
         for ix, (table_id, seat_ids) in enumerate(view_ids):
 
             # Pre-written message here:
@@ -105,12 +115,15 @@ class ServerView(tk.Frame):
             # Used to capture current value of ix as table_index for use when
             # handler is called (i.e., when screen is clicked).
 
-            # Damn, strange place to put a function definition.
-            # It just calls the controller's table_touched() method
+            # lol function definition in a method lmaooo
             def table_touch_handler(_, table_number = ix):
                 self.controller.table_touched(table_number)
 
-            # Creating the buttons for the tables and chairs here using canvas.tag_bind()?
+            # TODO ---------------------------------------------------------------- bookmark :)
+
+            # NOTE: canvas.tag_bind() is bind a click event on a given item in tkinter - it makes
+            # for an efficient way for tkinter to watch all mouse click events that take place.
+            # ...here, creating the buttons for the tables and chairs here using canvas.tag_bind()?
             self.canvas.tag_bind(table_id, '<Button-1>', table_touch_handler)
             for seat_id in seat_ids:
                 self.canvas.tag_bind(seat_id, '<Button-1>', table_touch_handler)
