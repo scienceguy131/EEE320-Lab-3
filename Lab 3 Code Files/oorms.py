@@ -14,12 +14,41 @@
 
 
     Notes:
-          - Velasco: I see when creating an object from a class that inherits from another class,
+
+          1 - Velasco: I see when creating an object from a class that inherits from another class,
           if you don't give it its own "overloaded" constructor, it automatically inherits the
           constructor from its parent (duh yea why did I have to mention that). When you do write
           an overloaded constructor though, you have to call the parents constructor with super().__init__(),
           or the console gets mad.
 
+          2 - Velasco: I've asked the prof as to why we have a function definition embedded within the code of a method,
+          and the reason for this one specifically is that each table/chair will get its very own handler function.
+          I'm guessing because its literally defined and called whenever the create_restaurant_ui() and
+          create_seat_ui() methods are called, the function handler for each of the tables/chairs are created right
+          then and there, and subsequently used whether the user touches one of the tables/chairs. I'm also presuming
+          this function definition needs to be made here in order to use the tag_bind() event binding function provided
+          by tkinter right after, as I see a reference to the handler function gets passed this tag_bind() function.
+          FurthermoreI'm going to look more into the tkinter documentation for this to see what exactly
+          is going on behind the scenes.
+          OOHHH I think I see why the reference to the function handlers defined in the methods gets passed through
+          the tag_bind() methods xD it's done so that the tkinter program knows what function to call (or simply code
+          to run) in the event that an event (a click in this case) is detected. Silly me.
+
+          Just to remember, a handler in programming was defined like this online:
+            "...an event handler is a callback routine that operates asynchronously once an event takes place.
+            It dictates the action that follows the event. The programmer writes a code for this action to take place."
+
+          Right, so I'm guessing the reason why the code was structured to have a function definition of the handler
+          within the method is to ensure that each table/chair object legit got its own specific handler, for
+          each and every single object that appears on the screen, whenever their specific interfaces show up.
+
+          Eh, sorry if you've actually read this whole thing doctor xD. I normally write stuff like this to get all
+          my thoughts out and try to understand something, while recording it at the same time you know. I tend to
+          be rather verbose and repetitive doing it.
+
+          AH I found it (I think)! The tag_bind() function essentially acts as a decorator/wrapper function to our
+          function handler, and for this to be possible the function handler needs to passed in through tag_bind()'s
+          arguments. There, that should be the case.
 
     Status:
         - Velasco (Sept 19, 2022) COMPLETED: Reading code for the first time to see what we've got to work with.
@@ -115,16 +144,19 @@ class ServerView(tk.Frame):
             # Used to capture current value of ix as table_index for use when
             # handler is called (i.e., when screen is clicked).
 
-            # lol function definition in a method lmaooo
+            # Refer to Notes - Entry 2 for a comment on this...
+            # Creating the handler function for when a table is touched.
             def table_touch_handler(_, table_number = ix):
                 self.controller.table_touched(table_number)
 
-            # TODO ---------------------------------------------------------------- bookmark :)
-
-            # NOTE: canvas.tag_bind() is bind a click event on a given item in tkinter - it makes
-            # for an efficient way for tkinter to watch all mouse click events that take place.
-            # ...here, creating the buttons for the tables and chairs here using canvas.tag_bind()?
+            # Refer to Notes - Entry 2 for a comment on this...
+            # Binding the table touch event to the tables on the user interface,
+            # passing in the table_touch_handler through .tag_bind() wrapper function
             self.canvas.tag_bind(table_id, '<Button-1>', table_touch_handler)
+
+            # Doing the same thing for each seat in the restaurant user interface
+            # (Passing in table_touch_handler() function so that touching a particular seat opens
+            # up the user interface of the table said seat is associated with. Ha ha I figured it out :D)
             for seat_id in seat_ids:
                 self.canvas.tag_bind(seat_id, '<Button-1>', table_touch_handler)
 
