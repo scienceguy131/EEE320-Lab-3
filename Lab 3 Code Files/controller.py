@@ -36,6 +36,9 @@
 
 from model import Table;   # lol we never really needed this import
 
+
+# ------ Defining the classes of controllers ---------
+
 class Controller:
     """
     Do not modify this class, just its subclasses. Represents common behaviour of all
@@ -49,10 +52,11 @@ class Controller:
         """ Constructor of Controller object.
 
         <view> is a ServerView object that handles all the drawing of the user interfaces, and <restaurant>
-        is a Restaurant object which contains all of the data used to draw out the tables, chairs, and orders. """
+        is a Restaurant object which contains all the data used to draw out the tables, chairs, and orders. """
 
         self.view = view
         self.restaurant = restaurant
+
 
     # -------- Mapping out methods for children classes to re-define ----------
 
@@ -86,7 +90,7 @@ class Controller:
 
 class RestaurantController(Controller):
 
-    # Inherits its parents constructor
+    # Uses its parents constructor
 
     def create_ui(self):
         """ Calling .create_ui() method from this class back in the ServerView object calls the create_restaurant_ui().

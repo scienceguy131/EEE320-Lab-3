@@ -62,6 +62,7 @@
         successfully
         - Velasco (Sept 20, 2022) COMPLETED: Cleaning up the code for oorms.py
         - Velasco (Sept 22, 2022) COMPLETED: Cleaning up code for controller.py
+        - Velasco (Sept, 22, 2022) COMPLETED: Cleaning up code for model.py
         - Mohammed (Sept 20, 2022): Beginning lab report write-up...
 
 """
