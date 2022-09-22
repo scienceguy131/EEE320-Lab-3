@@ -1,6 +1,8 @@
 """ This is the code module that contains all the testing code for the OORMS.
 
-When things start to get slowly implemented, then we'll start uncommenting lines. """
+When things start to get slowly implemented, then we'll start uncommenting lines.
+
+I will be leaving all the code in here untouched :). Won't be cleaning this one since we haven't modified it. """
 
 
 from controller import RestaurantController, TableController, OrderController

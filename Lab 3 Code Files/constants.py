@@ -1,4 +1,13 @@
-""" Yeah I think this code module is pretty self explanatory. """
+"""
+    Description:
+        This code module simply holds all the constants information that the OORMS program uses to draw out its
+        canvas and creates its restaurant objects.
+
+    Notes:
+        - The code in this module has been left untouched. Thus, no need for it to be cleaned.
+
+
+"""
 
 # Restaurant data
 
