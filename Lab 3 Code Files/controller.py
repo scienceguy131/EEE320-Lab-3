@@ -1,24 +1,60 @@
-""" Code module that contains the controller classes, including:
+"""
 
-Controller Parent Class
-RestaurantController (inherits Controller)
-TableController (inherits Controller)
-OrderController (inherits Controller) """
+    Description:
+
+        Code module that contains the controller classes. These classes are to be used in the
+        OORMS lab 3 assignment in the EEE320 class.
+
+    Classes defined in this module:
+         - Controller Class (parent class)
+         - RestaurantController Class (inherits Controller)
+         - TableController Class (inherits Controller)
+         - OrderController Class (inherits Controller)
+
+    Modified by: OCdt Al-Ansar Mohammed, OCdt Liethan Velasco
+
+    Notes:
+        1 - Velasco: Ahh that's a neat thing I remember learning about class inheritance.
+        The Controller class gets inherited by the other three classes in this module, which has
+        mapped out methods that each of its children classes share in common (somewhat).
+
+        You could say that we are overloading the methods when they are re-defined in the children
+        classes since each of the children classes need to do their own thing when it comes to like
+        the create_ui() method they share. The raise exception code statements written in Controller's
+        methods never really gets called because each of those methods are re-defined in the children classes
+        (yeah I'm rambling on a bit but just want to make sense of it).
+
+        Honestly, you could probably make this code module without ever needing to define the parent Controller
+        class. We're probably going to learn in class eventually  that this is a good coding practice-  to create
+        a parent class that has "mapped-out" methods if we're creating classes that share similar,
+        but not same behaviour.
+
+
+"""
 
 # --- Importing Libraries ---
-from model import Table;
+
+from model import Table;   # lol we never really needed this import
 
 class Controller:
     """
     Do not modify this class, just its subclasses. Represents common behaviour of all
     Controllers. Python has a mechanism for explicitly dealing with abstract classes,
     which we haven't seen yet; raising RuntimeError gives a similar effect.
+
+    Ehh I'm going to add a few in-line comments :).
     """
 
     def __init__(self, view, restaurant):
+        """ Constructor of Controller object.
+
+        <view> is a ServerView object that handles all the drawing of the user interfaces, and <restaurant>
+        is a Restaurant object which contains all of the data used to draw out the tables, chairs, and orders. """
+
         self.view = view
         self.restaurant = restaurant
 
+    # -------- Mapping out methods for children classes to re-define ----------
 
     def add_item(self, item):
         raise RuntimeError('add_item: some subclasses must implement')
@@ -36,9 +72,7 @@ class Controller:
         raise RuntimeError('place_order: some subclasses must implement')
 
     def seat_touched(self, seat_number):
-        """ Has similar code structure and functionality as the table_touched implementation. """
         raise RuntimeError('place_order: some subclasses must implement');
-
 
     def table_touched(self, table_index):
         raise RuntimeError('table_touched: some subclasses must implement')
@@ -46,41 +80,55 @@ class Controller:
     def update_order(self):
         raise RuntimeError('update_order: some subclasses must implement');
 
-# ------------------- Classes below are what we modify ----------------------
+
+
+# ------------------- Creating the Children Classes ----------------------
 
 class RestaurantController(Controller):
-    """ A class that inherits Controller class.
-     I'm guessing it controls the restaurant? """
 
+    # Inherits its parents constructor
 
     def create_ui(self):
-        """ Creates the restaurant user interface with the passed through. """
-
-        # This was defined in oorms.py
+        """ .create_ui() method in this class calls the create_restaurant_ui() method back
+        in the ServerView object. Essentially calls the method to draw the entire restaurant
+        into the canvas. """
         self.view.create_restaurant_ui()
 
     def table_touched(self, table_index):
+        """ This method is called by the table touch function handler back in the ServerView object.
+
+        Essentially sets the current controller of the ServerView to be the table touched so that
+        the table and its associated seatscan be "zoomed in upon". """
+
         # Retrieving specific table object that was touched from self.restaurant attribute
         this_table = self.restaurant.tables[table_index];
 
-        # Creating a Table Controller Object from table that was touched (damn u can do that lmao)
+        # Creating a Table Controller Object from table that was touched
         tc = TableController(self.view, self.restaurant, this_table);
 
         # Switching controller to this current table controller back in ServerView
         self.view.set_controller(tc);
 
 
-
 class TableController(Controller):
 
     def __init__(self, view, restaurant, table):
-        """ TableController constructor..."""
+        """ Constructor of TableController object.
 
+        <view> is a ServerView object that handles all the drawing of the user interfaces, <restaurant>
+        is the Restaurant object which contains all the data used to draw out the tables, chairs, and orders,
+        <table> is a specific table object that was clicked on (TableController object only gets created
+        when that happens). """
+
+        # Calling parent constructor
         super().__init__(view, restaurant);
 
+        # Setting instance vars
         self.view = view;
         self.restaurant = restaurant;
         self.table = table;
+
+    # TODO ------------------------------------------------------------------ bookmark
 
     def create_ui(self):
         self.view.create_table_ui(self.table);
