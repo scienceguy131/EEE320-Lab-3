@@ -89,9 +89,8 @@ class RestaurantController(Controller):
     # Inherits its parents constructor
 
     def create_ui(self):
-        """ .create_ui() method in this class calls the create_restaurant_ui() method back
-        in the ServerView object. Essentially calls the method to draw the entire restaurant
-        into the canvas. """
+        """ Calling .create_ui() method from this class back in the ServerView object calls the create_restaurant_ui().
+        Essentially calls the method to draw the entire restaurant into the canvas. """
         self.view.create_restaurant_ui()
 
     def table_touched(self, table_index):
@@ -128,74 +127,103 @@ class TableController(Controller):
         self.restaurant = restaurant;
         self.table = table;
 
-    # TODO ------------------------------------------------------------------ bookmark
 
     def create_ui(self):
+        """ Calling .create_ui() method from this class back in the ServerView object calls the create_table_ui().
+        Essentially calls the method to draw the specific table selected and its associated chairs onto the canvas. """
         self.view.create_table_ui(self.table);
 
 
     def seat_touched(self, seat_number):
-        """ This gets called whenever a seat is touched idk. """
+        """ This method is called by the seat touch function handler back in the ServerView object.
+
+        Essentially sets the current controller of the ServerView to be the OrderController object which
+        opens up the menu of menu items to be selected by the seat clicked on. The number of the seat
+        clicked on is passed through args as <seat_number>. """
 
         # Create OrderController object
         oc = OrderController(self.view, self.restaurant, self.table, seat_number);
 
-        # Setting controller to oc back in ServerView
+        # Setting current controller to oc back in ServerView
         self.view.set_controller(oc);
 
-    def done(self):
-        """ 1. gets called in the ServerView
-        2. makes a RestaurantController obj
-        3. sets the controller based on the restaurant controller
-        """
-        
-        # Makes a RestaurantController obj
-        rc = RestaurantController(view=self.view, restaurant=self.restaurant)
 
-        # sets the controller we just made
+    def done(self):
+        """ This function gets called when the [done] button gets pressed when viewing the table user interface.
+        Essentially switches the current controller in ServerView back to the Restaurant controller. In other
+        words, hitting the done button returns us back to seeing the whole restaurant. """
+        
+        # Making the RestaurantController object
+        rc = RestaurantController(view = self.view, restaurant = self.restaurant)
+
+        # Setting current controller to rc back in ServerView
         self.view.set_controller(rc)
         
 
 class OrderController(Controller):
 
     def __init__(self, view, restaurant, table, seat_number):
-        """ OrderController constructor..."""
+        """ Constructor of OrderController object.
 
+        <view> is a ServerView object that handles all the drawing of the user interfaces, <restaurant>
+        is the Restaurant object which contains all the data used to draw out the tables, chairs, and orders,
+        <table> is a specific table object that was clicked on, <seat_number> is the number of the seat at the table
+        that was clicked on. """
+
+        # Calling parent constructor
         super().__init__(view, restaurant);
 
+        # Setting the usual instance vars
         self.view = view;
         self.restaurant = restaurant;
         self.table = table;
 
-        # Getting the specific order associated with given seat_number
+        # Getting the list of Order objects (the order made) associated with the clicked-on seat
         self.order = self.table.order_for(seat_number);
 
+
     def create_ui(self):
-        """ Creates the user interface of the given OrderController object. """
+        """ Calling .create_ui() method from this class back in the ServerView object calls the create_order_ui().
+        Essentially calls the method to draw the order menu associated with the specific chair selected. """
         self.view.create_order_ui(self.order);
 
+
     def add_item(self, item):
+        """ Function that adds item to the "to be ordered" list when the order user interface is up.
+
+        Function does this by adding the item through the Order object's .add_item() method, and
+        updates the order user_interface() by calling .create_ui().  """
         self.order.add_item(item)
         self.create_ui()
 
 
     def update_order(self):
-        """ Updates order I guess idk. """
+        """ Function is responsible for setting the "to be ordered" items to be ordered - IOW coloured green.
 
-        # Placing the new orders
+         This function gets called when the 'Place Orders' button gets pressed while in the order user
+         interface. Obviously after pressing it returns the view to the table associated with the chair
+         whose order was just placed. """
+
+        # Setting the "to be ordered" items to ordered status.
         self.order.place_new_orders();
 
         # Creating the table controller and setting it to be controller in ServerView
         tc = TableController(self.view, self.restaurant, self.table);
         self.view.set_controller(tc);
 
+
     def cancel(self):
+        """ Function is responsible for cancelling an order in progress.
+
+        This function gets called when the 'Cancel' button gets pressed while in the order user interface.
+        Pressing the button returns the view to the table associated with the chair whose order was just cancelled."""
+
+        # Removing the list of items under "to be ordered" status
         self.order.remove_unordered_items()
 
+        # Switching the current controller in ServerView back to TableController
         tc = TableController(self.view,self.restaurant,self.table)
-
         self.view.set_controller(tc)
 
 
-
-
+# Siiiick this ones finished too.

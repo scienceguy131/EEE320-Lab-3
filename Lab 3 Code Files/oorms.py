@@ -13,7 +13,7 @@
     Lab Members: OCdt Al-Ansar Mohammed, OCdt Liethan Velasco.
 
 
-    Notes:
+    Notes:                  (yoo sorry for all these notes)
 
           1 - Velasco: I see when creating an object from a class that inherits from another class,
           if you don't give it its own "overloaded" constructor, it automatically inherits the
@@ -60,7 +60,8 @@
         - Velasco (Sept 20, 2022) COMPLETED: Implementing Place Order button sequence diagram.
         - Mohammed (Sept 20, 2022) COMPLETED: finished last sequence diagram (cancelling) and tested UI and ran tests.py
         successfully
-        - Velasco (Sept 20, 2022): Cleaning up the code for hand in... in the middle of create_restaurant_ui()
+        - Velasco (Sept 20, 2022) COMPLETED: Cleaning up the code for oorms.py
+        - Velasco (Sept 22, 2022) COMPLETED: Cleaning up code for controller.py
         - Mohammed (Sept 20, 2022): Beginning lab report write-up...
 
 """
